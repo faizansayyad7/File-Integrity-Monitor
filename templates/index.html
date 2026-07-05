@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>File Integrity Monitor</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📁 File Integrity Monitor</h1>
+
+<div class="buttons">
+
+<a href="/baseline">
+<button>Create Baseline</button>
+</a>
+
+<a href="/scan">
+<button>Scan Changes</button>
+</a>
+
+</div>
+
+{% if results %}
+
+<div class="cards">
+
+<div class="card">
+
+<h2>Modified</h2>
+
+<p>{{results.modified|length}}</p>
+
+</div>
+
+<div class="card">
+
+<h2>Added</h2>
+
+<p>{{results.added|length}}</p>
+
+</div>
+
+<div class="card">
+
+<h2>Deleted</h2>
+
+<p>{{results.deleted|length}}</p>
+
+</div>
+
+</div>
+
+<h2>Modified Files</h2>
+
+<ul>
+
+{% for file in results.modified %}
+
+<li>{{file}}</li>
+
+{% endfor %}
+
+</ul>
+
+<h2>Added Files</h2>
+
+<ul>
+
+{% for file in results.added %}
+
+<li>{{file}}</li>
+
+{% endfor %}
+
+</ul>
+
+<h2>Deleted Files</h2>
+
+<ul>
+
+{% for file in results.deleted %}
+
+<li>{{file}}</li>
+
+{% endfor %}
+
+</ul>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
